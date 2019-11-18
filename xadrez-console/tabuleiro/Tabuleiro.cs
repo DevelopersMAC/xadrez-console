@@ -22,7 +22,7 @@ namespace tabuleiro
 
         public Peca peca(Posicao pos)
         {
-            return pecas[pos.Coluna, pos.Coluna];
+            return pecas[pos.Linha, pos.Coluna];
         }
 
         public bool existePeca(Posicao pos)
@@ -39,6 +39,18 @@ namespace tabuleiro
             }
             pecas[pos.Linha, pos.Coluna] = p;
             p.Posicao = pos;
+        }
+
+        public Peca retirarPeca(Posicao pos)
+        {
+            if (peca(pos) == null)
+            {
+                return null;
+            }
+            Peca aux = peca(pos);
+            aux.Posicao = null;
+            pecas[pos.Linha, pos.Coluna] = null;
+            return aux;
         }
 
         public bool posicaoValida(Posicao pos)
